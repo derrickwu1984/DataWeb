@@ -36,8 +36,10 @@ class AliPay(object):
 
 
         if debug is True:
+            print (debug)
             self.__gateway = "https://openapi.alipaydev.com/gateway.do"
         else:
+            print('else %s' %debug)
             self.__gateway = "https://openapi.alipay.com/gateway.do"
 
     def direct_pay(self, subject, out_trade_no, total_amount, return_url=None, **kwargs):
@@ -129,11 +131,12 @@ if __name__ == "__main__":
     """支付请求过程"""
     # 传递参数初始化支付类
     alipay = AliPay(
-        appid="2016101200665303",  # 设置签约的appid
+        # appid="2016101200665303",  # 设置签约的appid-沙箱账号
+        appid="2019101868411866", #商户号
         app_notify_url="http://140.143.237.146:8000/folder/sh/",  # 异步支付通知url
         app_private_key_path=u"ying_yong_si_yao.txt",  # 设置应用私钥
         alipay_public_key_path="zhi_fu_bao_gong_yao.txt",  # 支付宝的公钥，验证支付宝回传消息使用，不是你自己的公钥,
-        debug=True,  # 默认False,                                   # 设置是否是沙箱环境，True是沙箱环境
+        debug=False,  # 默认False,                                   # 设置是否是沙箱环境，True是沙箱环境
         return_url="http://140.143.237.146:8000/folder/sh/"  # 同步支付通知url
     )
 
@@ -148,7 +151,8 @@ if __name__ == "__main__":
 
     # 将前面后的支付参数，拼接到支付网关
     # 注意：下面支付网关是沙箱环境，
-    re_url = "https://openapi.alipaydev.com/gateway.do?{data}".format(data=url)
+    #re_url = "https://openapi.alipaydev.com/gateway.do?{data}".format(data=url)
+    re_url = "https://openapi.alipay.com/gateway.do?{data}".format(data=url)
     print(re_url)
     # 最终进行签名后组合成支付宝的url请求
 
