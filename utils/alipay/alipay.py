@@ -130,20 +130,20 @@ if __name__ == "__main__":
     # 传递参数初始化支付类
     alipay = AliPay(
         appid="2016101200665303",  # 设置签约的appid
-        app_notify_url="http://140.143.237.146:80/",  # 异步支付通知url
+        app_notify_url="http://140.143.237.146:8000/folder/sh/",  # 异步支付通知url
         app_private_key_path=u"ying_yong_si_yao.txt",  # 设置应用私钥
         alipay_public_key_path="zhi_fu_bao_gong_yao.txt",  # 支付宝的公钥，验证支付宝回传消息使用，不是你自己的公钥,
         debug=True,  # 默认False,                                   # 设置是否是沙箱环境，True是沙箱环境
-        return_url="http://140.143.237.146:80/"  # 同步支付通知url
+        return_url="http://140.143.237.146:8000/folder/sh/"  # 同步支付通知url
     )
 
     # 传递参数执行支付类里的direct_pay方法，返回签名后的支付参数，
     url = alipay.direct_pay(
         subject="测试订单",  # 订单名称
         # 订单号生成，一般是当前时间(精确到秒)+用户ID+随机数
-        out_trade_no="201910180001/sh/stock_600000.csv",  # 订单号
+        out_trade_no="201910180001/sh/stock_600002.csv",  # 订单号
         total_amount=0.01,  # 支付金额
-        return_url="http://140.143.237.146:80/"  # 支付成功后，跳转url
+        return_url="http://140.143.237.146:8000/folder/sh/"  # 支付成功后，跳转url
     )
 
     # 将前面后的支付参数，拼接到支付网关
