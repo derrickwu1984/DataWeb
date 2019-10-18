@@ -1,7 +1,7 @@
 import os
 from django.conf import settings
 from django.shortcuts import render,HttpResponse
-from utils import find_files
+from util import find_files
 
 from ftp.models import PathItem,FileItem
 from django.views.decorators.csrf import csrf_exempt
